@@ -14,6 +14,7 @@ namespace mat
     Matrix row_aug(Matrix,Matrix);//行增广矩阵
     std::pair<Matrix, Matrix> QRdecomp(Matrix);//QR分解
     std::vector<std::vector<long double>> solution(Matrix A,Matrix B);
+    long double dot(Matrix,Matrix);
     Matrix orthx(Matrix);
 }
 
@@ -219,6 +220,7 @@ long double operator/(const Matrix A,const Matrix B)
     throw std::invalid_argument("not a number!");
     return A.getvalue(0,0)/B.getvalue(0,0);
 }
+
 Matrix operator*(const Matrix A,const Matrix B)//矩阵乘法
     {
         if(A.getcol()==B.getrow())

@@ -11,7 +11,7 @@
 
 int main()
 {
-    int m,n,p,q;
+    //int m,n,p,q;
     std::vector<std::vector<long double>>result;
     //std::cin>>m>>n;
     Matrix A(2,2);

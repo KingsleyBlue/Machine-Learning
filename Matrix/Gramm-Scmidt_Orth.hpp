@@ -1,6 +1,8 @@
 #pragma once
 #include"Matrix_core.hpp"
 #include"Matrix_transposition.hpp"
+#include"Matrix_dot.hpp"
+
 Matrix mat::orthx(Matrix A)
 {
     int rows=A.getrow();
@@ -16,10 +18,10 @@ Matrix mat::orthx(Matrix A)
         }
         for(int j=1;j<cols;j++)
         {
-            for(int i=0;i<j;i++)
+            for(int i=j;i<cols;i++)
             {
-                orth[j]=orth[j]-((mat::trans(orth[i])*orth[j])/(mat::trans(orth[i])*orth[i]))*orth[i];
-
+                //orth[j]=orth[j]-((mat::trans(orth[i])*orth[j])/(mat::trans(orth[i])*orth[i]))*orth[i];
+                orth[i]=orth[i]-mat::dot(trans(orth[i]),orth[j-1])*orth[j-1];
             }
             
         }
