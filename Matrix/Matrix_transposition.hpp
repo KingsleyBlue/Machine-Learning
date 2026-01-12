@@ -1,6 +1,6 @@
 #pragma once
 #include"Matrix_core.hpp"
-Matrix mat::trans(Matrix A)
+Matrix mat::trans(const Matrix& A)
     {
         int rows=A.getcol(),cols=A.getrow();
         Matrix AT(rows,cols);

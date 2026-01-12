@@ -21,7 +21,7 @@ Matrix mat::orthx(Matrix A)
             for(int i=j;i<cols;i++)
             {
                 //orth[j]=orth[j]-((mat::trans(orth[i])*orth[j])/(mat::trans(orth[i])*orth[i]))*orth[i];
-                orth[i]=orth[i]-mat::dot(trans(orth[i]),orth[j-1])*orth[j-1];
+                orth[i]=orth[i]-mat::dot(orth[i],orth[j-1])*orth[j-1];
             }
             
         }

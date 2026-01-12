@@ -4,7 +4,7 @@
 #include<algorithm>
 #include<cmath>
 
-std::pair<Matrix, Matrix> mat::QRdecomp(Matrix A)
+std::pair<Matrix, Matrix> mat::QRdecomp(const Matrix& A)
 {
     if(mat::rank(A)<std::min(A.getcol(),A.getrow()))
     throw std::invalid_argument("not full rank row or full rank column!");

@@ -1,7 +1,7 @@
 #pragma once
 #include"Matrix_core.hpp"
 
-Matrix mat::col_aug(Matrix A,Matrix B)
+Matrix mat::col_aug(const Matrix& A,const Matrix& B)
 {
     if(A.getrow()!=B.getrow())
     throw std::invalid_argument("size not match!");

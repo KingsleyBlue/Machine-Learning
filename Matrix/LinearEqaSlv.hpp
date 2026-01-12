@@ -3,7 +3,7 @@
 #include"Matrix_LU.hpp"
 #include"Matrix_QR.hpp"
 #include<tuple>
-std::vector<std::vector<long double>> mat::solution(Matrix A,Matrix B)
+std::vector<std::vector<long double>> mat::solution(const Matrix& A,const Matrix& B)
 {
     int rows=B.getrow();
     int cols=B.getcol();

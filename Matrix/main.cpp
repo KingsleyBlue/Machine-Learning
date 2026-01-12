@@ -6,7 +6,7 @@
 #include"LinearEqaSlv.hpp"
 #include"Matrix_QR.hpp"
 #include<tuple>
-#include<stdio.h>
+#include<cstdio>
 
 
 int main()
