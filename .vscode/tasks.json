@@ -34,7 +34,7 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe 生成活动文件",
-            "command": "D:/Apps/Mingw64/bin/g++.exe",
+            "command": "D:/Mingw64/bin/g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
@@ -43,7 +43,7 @@
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "D:/Apps/Mingw64/bin"
+                "cwd": "D:/Mingw64/bin"
             },
             "problemMatcher": [
                 "$gcc"

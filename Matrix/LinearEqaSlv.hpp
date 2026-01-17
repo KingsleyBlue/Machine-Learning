@@ -3,7 +3,7 @@
 #include"Matrix_LU.hpp"
 #include"Matrix_QR.hpp"
 #include<tuple>
-std::vector<std::vector<long double>> mat::solution(const Matrix& A,const Matrix& B)
+std::vector<Matrix> mat::solution(const Matrix& A,const Matrix& B)
 {
     int rows=B.getrow();
     int cols=B.getcol();
@@ -11,14 +11,15 @@ std::vector<std::vector<long double>> mat::solution(const Matrix& A,const Matrix
     try
     {
         std::vector<long double>temp_y(rows);
-        std::vector<std::vector<long double>>result;
+        std::vector<Matrix>result;
+        result.reserve(cols);
         auto lu=mat::LUdecomp(A);
         Matrix L=std::get<0>(lu);
         Matrix U=std::get<1>(lu);
         double sum;
         for(int g=0;g<cols;g++)
         {
-            result.push_back(std::vector<long double>(rows));
+            result.push_back(Matrix(rows,1));
             for(int i=0;i<L.getrow();i++)
             {
                 
@@ -36,13 +37,13 @@ std::vector<std::vector<long double>> mat::solution(const Matrix& A,const Matrix
             }
             for(int i=U.getrow()-1;i>=0;i--)
             {
-                result[g][U.getrow()-1]=temp_y[rows-1];
+                result[g].set(U.getrow()-1,0,temp_y[rows-1]);
                 if(i<U.getrow()-1)
                 {
-                    result[g][i]=temp_y[i];
+                    result[g].set(i,0,temp_y[i]);
                     for(int j=U.getcol()-1;j>i;j--)
                     {
-                        result[g][i]-=U.getvalue(i,j)*result[g][j];
+                        result[g].set(i,0,result[g].getvalue(i,0)-U.getvalue(i,j)*result[g].getvalue(j,0));
                     }
                 }
             }
@@ -59,20 +60,21 @@ std::vector<std::vector<long double>> mat::solution(const Matrix& A,const Matrix
             auto qr=mat::QRdecomp(A);
             Matrix Q=std::get<0>(qr);
             Matrix R=std::get<1>(qr);
-            std::vector<std::vector<long double>>result;
+            std::vector<Matrix>result;
+            result.reserve(cols);
             Matrix Y=mat::trans(Q)*B;
             for(int g=0;g<cols;g++)
             {
-                result.push_back(std::vector<long double>(rows));
+                result.push_back(Matrix(rows,1));
                 for(int i=R.getrow()-1;i>=0;i--)
                 {
-                    result[g][R.getrow()-1]=Y.getvalue(rows-1,g);
+                    result[g].set(R.getrow()-1,0,Y.getvalue(rows-1,g));
                     if(i<R.getrow()-1)
                     {
-                        result[g][i]=Y.getvalue(i,g);
+                        result[g].set(i,0,Y.getvalue(i,g));
                         for(int j=R.getcol()-1;j>i;j--)
                         {
-                            result[g][i]-=R.getvalue(i,j)*result[g][j];
+                            result[g].set(i,0,result[g].getvalue(i,0)-R.getvalue(i,j)*result[g].getvalue(j,0));
                         }
                     }
                 }

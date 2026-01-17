@@ -13,9 +13,10 @@ namespace mat
     Matrix col_aug(const Matrix&,const Matrix&);//列增广矩阵
     Matrix row_aug(const Matrix&,const Matrix&);//行增广矩阵
     std::pair<Matrix, Matrix> QRdecomp(const Matrix&);//QR分解
-    std::vector<std::vector<long double>> solution(const Matrix&,const Matrix&);
+    std::vector<Matrix> solution(const Matrix&,const Matrix&);
     long double dot(const Matrix&,const Matrix&);
     Matrix orthx(Matrix);
+    Matrix reverse(const Matrix&);
 }
 
 //定义矩阵
@@ -92,7 +93,7 @@ namespace mat
         // 检查矩阵规模是否相同
         if (rows != other.rows || cols != other.cols)
         {
-            throw 10;
+            throw std::invalid_argument("=():size not match!");
         }
 
         // 复制数据
