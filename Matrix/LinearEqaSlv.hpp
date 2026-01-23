@@ -68,7 +68,7 @@ std::vector<Matrix> mat::solution(const Matrix& A,const Matrix& B)
                 result.push_back(Matrix(rows,1));
                 for(int i=R.getrow()-1;i>=0;i--)
                 {
-                    result[g].set(R.getrow()-1,0,Y.getvalue(rows-1,g));
+                    result[g].set(R.getrow()-1,0,Y.getvalue(rows-1,g)/R.getvalue(rows-1,rows-1));
                     if(i<R.getrow()-1)
                     {
                         result[g].set(i,0,Y.getvalue(i,g));
@@ -76,6 +76,7 @@ std::vector<Matrix> mat::solution(const Matrix& A,const Matrix& B)
                         {
                             result[g].set(i,0,result[g].getvalue(i,0)-R.getvalue(i,j)*result[g].getvalue(j,0));
                         }
+                        result[g].set(i,0,(result[g].getvalue(i,0))/R.getvalue(i,i));
                     }
                 }
             }

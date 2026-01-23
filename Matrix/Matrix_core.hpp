@@ -17,6 +17,7 @@ namespace mat
     long double dot(const Matrix&,const Matrix&);
     Matrix orthx(Matrix);
     Matrix reverse(const Matrix&);
+    Matrix HT(const Matrix&,const int&);
 }
 
 //定义矩阵
