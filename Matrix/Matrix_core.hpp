@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<vector>
+#include<cmath>
 
 class Matrix;
 namespace mat
@@ -43,6 +44,7 @@ namespace mat
         }
     }
 
+    Matrix(const Matrix& m):rows(m.rows),cols(m.cols),matrix(m.matrix){}
     int getrow() const{return rows;}//返回行数
     int getcol() const{return cols;}//返回列数
     long double getvalue(int row,int col) const
@@ -201,8 +203,8 @@ Matrix operator*(const Matrix& A,const long double& b)//矩阵数乘
 
 Matrix operator/(const Matrix& A,const long double& b)//矩阵数除
     {
-        if(b==0)
-          throw std::invalid_argument("/():the divisor is 0!");
+        if(abs(b)<1e-5)
+          throw std::invalid_argument("/():the divisor is near 0!");
         else{
         Matrix C(A.getrow(),A.getcol());
             for(int i=0;i<C.getrow();i++)
