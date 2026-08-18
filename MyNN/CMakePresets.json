@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "mingw",
+            "displayName": "MinGW",
+            "generator": "MinGW Makefiles",
+            "binaryDir": "${sourceDir}/build-mingw",
+            "cacheVariables": {
+                "CMAKE_CXX_STANDARD": "17",
+                "Matrix_DIR": "D:/Docs/Code/C++/Libraries/Matrix-MinGW/lib/cmake/Matrix"
+            }
+        }
+    ]
+}
